@@ -17,10 +17,10 @@ const startServer = async () => {
     }
 
     type Mutation {
-      addBlock(height: UserInput): Block
+      addBlock(height: BlockInput): Block
     }
 
-    input UserInput {
+    input BlockInput {
       height: Int!
     }
 
