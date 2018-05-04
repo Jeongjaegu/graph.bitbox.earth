@@ -11,10 +11,9 @@ const startServer = async () => {
 
   // GraphQL Types
   const typeDefs = `
-    type User {
+    type Block {
       _id: ID!
-      name: String
-      password: String
+      Height: Int
     }
 
     type Mutation {
