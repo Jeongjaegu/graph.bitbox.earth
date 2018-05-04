@@ -13,7 +13,7 @@ const startServer = async () => {
   const typeDefs = `
     type Block {
       _id: ID!
-      Height: Int
+      height: Int
     }
 
     type Mutation {
@@ -78,3 +78,11 @@ const dbConnectAndStartServer = async () => {
 
 // Entry point
 dbConnectAndStartServer();
+
+// mutation addBlock {
+//   addBlock(input: {
+//     height: 1,
+//   }) {
+//     height
+//   }
+// }
