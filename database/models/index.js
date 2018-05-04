@@ -3,16 +3,15 @@ import { getDB } from "../index";
 const DB = getDB();
 
 //#region schemas
-const USER_SCHEMA = DB.Schema({
-  name: String,
-  password: String,
+const BLOCK_SCHEMA = DB.Schema({
+  height: Number,
 });
 //#endregion schemas
 
 //#region models
-const User = DB.model('User', USER_SCHEMA);
+const Block = DB.model('Block', BLOCK_SCHEMA);
 //#endregion models
 
 module.exports = {
-  User,
+  Block,
 };

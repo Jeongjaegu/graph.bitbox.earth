@@ -7,7 +7,7 @@ import { connectToDB } from './database';
 
 // Start the http server
 const startServer = async () => {
-  const { User } = require('./database/models');
+  const { Block } = require('./database/models');
 
   // GraphQL Types
   const typeDefs = `
@@ -98,8 +98,8 @@ const startServer = async () => {
     },
 
     Mutation: {
-      addUser: async(root, args) => {
-        const res = await User.create(args.input);
+      addBlock: async(root, args) => {
+        const res = await Block.create(args.input);
         return res;
       },
     },
