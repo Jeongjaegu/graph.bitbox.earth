@@ -18,12 +18,11 @@ const startServer = async () => {
     }
 
     type Mutation {
-      addUser(input: UserInput): User
+      addBlock(height: UserInput): Block
     }
 
     input UserInput {
-      name: String!
-      password: String!
+      height: Int!
     }
 
     type Block {
