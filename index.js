@@ -25,75 +25,18 @@ const startServer = async () => {
       height: Int!
     }
 
-    type Block {
-      height: Int!
-      rollOnce: Int!
-      roll(numRolls: Int!): [Int]
-    }
-
-    type Address {
-      legacy: String
-      cashAddr: String
-    }
-
-    type Transaction {
-      txid: String
-    }
-
     type Query {
-      getBlock(height: Int): Block
-      getAddress(address: String): Address
-      getTransaction(txid: String): Transaction
-      users: [User]
+      blocks: [Block]
     }
   `;
 
-  class Block {
-    constructor(height) {
-      this.height = height;
-    }
-
-    rollOnce() {
-      return 1 + Math.floor(Math.random() * this.height);
-    }
-
-    roll({numRolls}) {
-      var output = [];
-      for (var i = 0; i < numRolls; i++) {
-        output.push(this.rollOnce());
-      }
-      return output;
-    }
-  }
-
-  class Address {
-    constructor(legacy, cashAddr) {
-      this.legacy = legacy;
-      this.cashAddr = cashAddr;
-    }
-  }
-
-  class Transaction {
-    constructor(txid) {
-      this.txid = txid;
-    }
-  }
 
   // GraphQL resolvers
   const resolvers = {
     Query: {
-      users: async () => {
-        const res = await User.find();
+      blocks: async () => {
+        const res = await Block.find();
         return res;
-      },
-      getBlock: async ({height}) => {
-        return new Block(height || 6);
-      },
-      getAddress: async ({address}) => {
-        return new Address(address, address);
-      },
-      getTransaction: async ({height}) => {
-        return new Transaction(height || 6);
       }
     },
 
