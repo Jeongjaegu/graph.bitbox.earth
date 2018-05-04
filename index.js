@@ -49,6 +49,37 @@ const startServer = async () => {
     }
   `;
 
+  class Block {
+    constructor(height) {
+      this.height = height;
+    }
+
+    rollOnce() {
+      return 1 + Math.floor(Math.random() * this.height);
+    }
+
+    roll({numRolls}) {
+      var output = [];
+      for (var i = 0; i < numRolls; i++) {
+        output.push(this.rollOnce());
+      }
+      return output;
+    }
+  }
+
+  class Address {
+    constructor(legacy, cashAddr) {
+      this.legacy = legacy;
+      this.cashAddr = cashAddr;
+    }
+  }
+
+  class Transaction {
+    constructor(txid) {
+      this.txid = txid;
+    }
+  }
+
   // GraphQL resolvers
   const resolvers = {
     Query: {
@@ -80,37 +111,6 @@ const startServer = async () => {
     typeDefs,
     resolvers,
   });
-
-  class Block {
-    constructor(height) {
-      this.height = height;
-    }
-
-    rollOnce() {
-      return 1 + Math.floor(Math.random() * this.height);
-    }
-
-    roll({numRolls}) {
-      var output = [];
-      for (var i = 0; i < numRolls; i++) {
-        output.push(this.rollOnce());
-      }
-      return output;
-    }
-  }
-
-  class Address {
-    constructor(legacy, cashAddr) {
-      this.legacy = legacy;
-      this.cashAddr = cashAddr;
-    }
-  }
-
-  class Transaction {
-    constructor(txid) {
-      this.txid = txid;
-    }
-  }
 
   // Initiate express and define routes
   const app = express();
